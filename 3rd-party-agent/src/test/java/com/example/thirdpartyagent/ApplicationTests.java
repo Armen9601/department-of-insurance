@@ -1,10 +1,10 @@
-package com.departament.requestservice;
+package com.example.thirdpartyagent;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class RequestServiceApplicationTests {
+class ApplicationTests {
 
     @Test
     void contextLoads() {

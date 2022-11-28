@@ -1,0 +1,2 @@
+insert into request (id, applicant_id, created_date)
+values ('06650668-a0eb-45cd-aa90-7d753685b3d4','8a27c73e-76d2-4376-82ae-1cec166170f6');

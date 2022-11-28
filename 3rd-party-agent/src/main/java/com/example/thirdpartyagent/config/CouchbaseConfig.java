@@ -1,4 +1,4 @@
-package com.departament.requestservice.config;
+package com.example.thirdpartyagent.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.couchbase.config.AbstractCouchbaseConfiguration;
@@ -23,6 +23,6 @@ public class CouchbaseConfig extends AbstractCouchbaseConfiguration {
 
     @Override
     public String getBucketName() {
-        return "request";
+        return "report";
     }
 }

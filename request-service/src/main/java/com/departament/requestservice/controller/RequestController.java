@@ -21,7 +21,7 @@ public class RequestController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<RequestDto> findAll(@PathVariable("id") UUID id) {
+    public ResponseEntity<RequestDto> findById(@PathVariable("id") UUID id) {
         return ResponseEntity.ok(requestService.findById(id));
     }
 
