@@ -1,5 +1,7 @@
 package com.departament.requestservice.service.impl;
 
+import com.departament.requestservice.AgentClient;
+import com.departament.requestservice.dto.ReportDto;
 import com.departament.requestservice.dto.RequestDto;
 import com.departament.requestservice.entity.Request;
 import com.departament.requestservice.exception.EntityNotFoundException;
@@ -20,10 +22,14 @@ public class RequestServiceImpl implements RequestService {
 
     private final RequestMapper mapper;
 
-    public RequestServiceImpl(RequestRepository repository, RequestMapper mapper) {
+    private final AgentClient agentClient;
+
+
+    public RequestServiceImpl(RequestRepository repository, RequestMapper mapper,
+                              AgentClient agentClient) {
         this.repository = repository;
         this.mapper = mapper;
-
+        this.agentClient = agentClient;
     }
 
     @Override
@@ -49,5 +55,10 @@ public class RequestServiceImpl implements RequestService {
     @Override
     public void delete(UUID id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    public ReportDto reportByApplicantId(UUID id) {
+        return agentClient.reportByApplicantId(id);
     }
 }

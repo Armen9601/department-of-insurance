@@ -20,8 +20,8 @@ public class AgentController {
     private final AgentService agentService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<ReportDto> findById(@PathVariable("id") UUID id) throws IOException {
-        return ResponseEntity.ok(agentService.findByApplicantId(id));
+    public ResponseEntity<ReportDto> reportById(@PathVariable("id") UUID id) throws IOException {
+        return ResponseEntity.ok(agentService.reportByApplicantId(id));
     }
 
 }

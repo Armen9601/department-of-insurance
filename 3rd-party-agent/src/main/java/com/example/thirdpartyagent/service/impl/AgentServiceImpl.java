@@ -32,7 +32,7 @@ public class AgentServiceImpl implements AgentService {
     }
 
     @Override
-    public ReportDto findByApplicantId(UUID applicantId) throws IOException {
+    public ReportDto reportByApplicantId(UUID applicantId) throws IOException {
         String reportDtoAsString = agentServiceMock.setup(wireMockServer).getResponse().getBody();
         ReportDto reportDto = parseStringToObject(reportDtoAsString);
         Report savedReport = repository.save(mapper.toEntity(reportDto));

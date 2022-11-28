@@ -7,6 +7,6 @@ import java.util.UUID;
 
 public interface AgentService {
 
- ReportDto findByApplicantId(UUID applicantId) throws IOException;
+ ReportDto reportByApplicantId(UUID applicantId) throws IOException;
 
 }
