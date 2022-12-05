@@ -1,4 +1,17 @@
 {
-  "createdFrom": "06650668-a0eb-45cd-aa90-7d763685b3d4",
-  "agentName": "poxos"
+  "id": "609c2585-47f9-456e-b842-51db4411cbb7",
+  "request": {
+    "url": "/report",
+    "method": "GET"
+  },
+  "response": {
+    "status": 200,
+    "jsonBody":{
+      "createdFrom": "06650668-a0eb-45cd-aa90-7d763685b3d4",
+      "agentName": "poxos"
+    },
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
 }

@@ -1,0 +1,27 @@
+spring:
+  couchbase:
+    connection-string: "couchbase_docker_db"
+    username: "Administrator"
+    password: "administrator"
+    env:
+      ssl:
+        enabled: false
+  data:
+    couchbase:
+      bucket-name: "request"
+
+#spring:
+#  couchbase:docker
+#    connection-string: localhost:11210
+#    username: user
+#    password: couchbase
+#    env:
+#      ssl:
+#        enabled: false
+#  data:
+#    couchbase:
+#      bucket-name: request
+
+
+
+

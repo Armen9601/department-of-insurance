@@ -1,3 +1,0 @@
-delete
-from request
-where request.id = 06650668-a0eb-45cd-aa90-7d753685b3d4;
