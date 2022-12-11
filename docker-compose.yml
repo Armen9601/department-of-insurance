@@ -17,6 +17,8 @@ services:
     build:
       context: request-service
       dockerfile: Dockerfile
+    depends_on:
+      - couchbase_docker_db
 
   3rd-party-agent:
     image: 3rd-party-agent
@@ -25,6 +27,8 @@ services:
     build:
       context: 3rd-party-agent
       dockerfile: Dockerfile
+    depends_on:
+      - couchbase_docker_db
 
   redis:
     image: redis

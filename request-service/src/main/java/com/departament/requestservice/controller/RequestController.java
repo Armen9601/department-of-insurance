@@ -31,4 +31,15 @@ public class RequestController {
         return ResponseEntity.ok(requestService.reportByApplicantId(id));
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable("id") UUID id) {
+        requestService.delete(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping
+    public ResponseEntity<RequestDto> update(@RequestBody RequestDto requestDto) {
+        return ResponseEntity.ok(requestService.update(requestDto));
+    }
+
 }

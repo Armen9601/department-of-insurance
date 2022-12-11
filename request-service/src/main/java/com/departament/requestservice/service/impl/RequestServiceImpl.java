@@ -1,6 +1,6 @@
 package com.departament.requestservice.service.impl;
 
-import com.departament.requestservice.AgentClient;
+import com.departament.requestservice.feign.AgentClient;
 import com.departament.requestservice.dto.ReportDto;
 import com.departament.requestservice.dto.RequestDto;
 import com.departament.requestservice.entity.Request;

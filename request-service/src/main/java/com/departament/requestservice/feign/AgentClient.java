@@ -1,4 +1,4 @@
-package com.departament.requestservice;
+package com.departament.requestservice.feign;
 
 import com.departament.requestservice.dto.ReportDto;
 import org.springframework.cloud.openfeign.FeignClient;
