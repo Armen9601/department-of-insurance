@@ -1,0 +1,29 @@
+#couchbase:
+#  connection-string: localhost:11210
+#  username: user
+#  password: password1234
+#  env:
+#    ssl:
+#      enabled: false
+#data:
+#  couchbase:
+#    bucket-name: mybucket
+
+couchbase:
+  cluster1: 127.0.0.1
+  bootstrapHttpDirectPort: 8091
+  bootstrapHttpSslPort: 18091
+  bootstrapCarrierDirectPort: 11210
+  bootstrapCarrierSslPort: 11207
+  bucket:
+    usersession:
+      name: user
+      password: couchabse
+    configuration:
+      name: user
+      password: couchabse
+  bucketOpenTimeout: 25000
+  operationTimeout: 60000
+  observableTimeoutMilliSeconds: 65000
+  ioPoolSize: 3
+  computationPoolSize: 3

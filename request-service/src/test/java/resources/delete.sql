@@ -1,0 +1,1 @@
+delete from request where request.applicantId=":8a27c73e-76d2-4376-82ae-1cec166170f6"

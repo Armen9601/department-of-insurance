@@ -1,5 +1,6 @@
 package com.departament.requestservice.controller;
 
+import com.departament.requestservice.dto.ReportDto;
 import com.departament.requestservice.dto.RequestDto;
 import com.departament.requestservice.service.RequestService;
 import lombok.RequiredArgsConstructor;
@@ -21,8 +22,24 @@ public class RequestController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<RequestDto> findAll(@PathVariable("id") UUID id) {
+    public ResponseEntity<RequestDto> findById(@PathVariable("id") UUID id) {
         return ResponseEntity.ok(requestService.findById(id));
+    }
+
+    @GetMapping("/report/{id}")
+    public ResponseEntity<ReportDto> reportByApplicantId(@PathVariable("id") UUID id) {
+        return ResponseEntity.ok(requestService.reportByApplicantId(id));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable("id") UUID id) {
+        requestService.delete(id);
+        return ResponseEntity.ok().build();
+    }
+
+    @PutMapping
+    public ResponseEntity<RequestDto> update(@RequestBody RequestDto requestDto) {
+        return ResponseEntity.ok(requestService.update(requestDto));
     }
 
 }

@@ -8,31 +8,25 @@
         <version>2.5.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.departament</groupId>
-    <artifactId>request-service</artifactId>
+    <groupId>com.example</groupId>
+    <artifactId>third-party-agent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>request-service</name>
+    <name>3rd-party-agent</name>
     <properties>
         <spring-cloud.version>2020.0.2</spring-cloud.version>
         <spring.boot.version>2.5.2</spring.boot.version>
         <java.version>11</java.version>
     </properties>
     <dependencies>
-
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-couchbase</artifactId>
-            <version>4.4.6</version>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <artifactId>spring-boot-starter</artifactId>
         </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.24</version>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.mapstruct</groupId>
@@ -45,67 +39,44 @@
             <version>1.4.2.Final</version>
         </dependency>
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time</artifactId>
-            <version>2.9.2</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-validator</artifactId>
-            <version>5.2.4.Final</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <artifactId>modelmapper</artifactId>
-            <groupId>org.modelmapper</groupId>
+            <groupId>com.github.tomakehurst</groupId>
+            <artifactId>wiremock-jre8</artifactId>
+            <version>2.32.0</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-web</artifactId>
+            <version>5.3.8</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <artifactId>springfox-boot-starter</artifactId>
+            <groupId>io.springfox</groupId>
             <version>3.0.0</version>
         </dependency>
         <dependency>
-            <groupId>org.testcontainers</groupId>
-            <artifactId>testcontainers</artifactId>
-            <version>1.16.3</version>
-            <scope>test</scope>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <groupId>io.springfox</groupId>
+            <version>3.0.0</version>
         </dependency>
         <dependency>
-            <groupId>org.testcontainers</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>1.16.3</version>
-            <scope>test</scope>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-couchbase</artifactId>
+            <version>4.4.6</version>
         </dependency>
         <dependency>
-            <groupId>org.testcontainers</groupId>
-            <artifactId>couchbase</artifactId>
-            <version>1.16.3</version>
-            <scope>test</scope>
-        </dependency>
-        <!-- API, java.xml.bind module -->
-        <dependency>
-            <groupId>jakarta.xml.bind</groupId>
-            <artifactId>jakarta.xml.bind-api</artifactId>
-            <version>2.3.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.awaitility</groupId>
-            <artifactId>awaitility</artifactId>
-            <version>4.1.1</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- Runtime, com.sun.xml.bind module -->
-        <dependency>
-            <groupId>org.glassfish.jaxb</groupId>
-            <artifactId>jaxb-runtime</artifactId>
-            <version>2.3.2</version>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
     </dependencies>
     <dependencyManagement>
@@ -124,12 +95,12 @@
     <packaging>jar</packaging>
 
     <build>
-        <finalName>request-service</finalName>
+        <finalName>third-party-agent</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <version>2.5.2</version>
+                <version>2.6.1</version>
             </plugin>
         </plugins>
     </build>
