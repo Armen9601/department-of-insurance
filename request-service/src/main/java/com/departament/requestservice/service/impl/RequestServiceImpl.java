@@ -1,10 +1,12 @@
 package com.departament.requestservice.service.impl;
 
-import com.departament.requestservice.feign.AgentClient;
 import com.departament.requestservice.dto.ReportDto;
 import com.departament.requestservice.dto.RequestDto;
+import com.departament.requestservice.dto.SynthesizerRequest;
 import com.departament.requestservice.entity.Request;
 import com.departament.requestservice.exception.EntityNotFoundException;
+import com.departament.requestservice.feign.AgentClient;
+import com.departament.requestservice.feign.SynthesizerClient;
 import com.departament.requestservice.mapper.RequestMapper;
 import com.departament.requestservice.repo.RequestRepository;
 import com.departament.requestservice.service.RequestService;
@@ -24,12 +26,15 @@ public class RequestServiceImpl implements RequestService {
 
     private final AgentClient agentClient;
 
+    private final SynthesizerClient synthesizerClient;
+
 
     public RequestServiceImpl(RequestRepository repository, RequestMapper mapper,
-                              AgentClient agentClient) {
+                              AgentClient agentClient, SynthesizerClient synthesizerClient) {
         this.repository = repository;
         this.mapper = mapper;
         this.agentClient = agentClient;
+        this.synthesizerClient = synthesizerClient;
     }
 
     @Override
@@ -60,5 +65,10 @@ public class RequestServiceImpl implements RequestService {
     @Override
     public ReportDto reportByApplicantId(UUID id) {
         return agentClient.reportByApplicantId(id);
+    }
+
+    @Override
+    public String sendRequestForAcceptedStatus(SynthesizerRequest synthesizerRequest) {
+        return synthesizerClient.sendRequestForAcceptedStatus(synthesizerRequest);
     }
 }

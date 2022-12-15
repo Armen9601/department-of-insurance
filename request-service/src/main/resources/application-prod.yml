@@ -1,0 +1,23 @@
+spring:
+  couchbase:
+    connection-string: "couchbase_docker_db"
+    username: "Administrator"
+    password: "administrator"
+    env:
+      ssl:
+        enabled: false
+  data:
+    couchbase:
+      bucket-name: "request"
+
+  cloud:
+    gcp:
+      project-id: sintezator-service
+      credentials:
+        location: file:/home/sintezator.json
+
+
+
+
+
+

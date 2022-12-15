@@ -12,6 +12,7 @@
     <modules>
         <module>request-service</module>
         <module>3rd-party-agent</module>
+        <module>sintezator-service</module>
     </modules>
 
 

@@ -2,6 +2,7 @@ package com.departament.requestservice.controller;
 
 import com.departament.requestservice.dto.ReportDto;
 import com.departament.requestservice.dto.RequestDto;
+import com.departament.requestservice.dto.SynthesizerRequest;
 import com.departament.requestservice.service.RequestService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -40,6 +41,11 @@ public class RequestController {
     @PutMapping
     public ResponseEntity<RequestDto> update(@RequestBody RequestDto requestDto) {
         return ResponseEntity.ok(requestService.update(requestDto));
+    }
+
+    @PostMapping("/synthesizer")
+    public ResponseEntity<?> sendRequestForAcceptedStatus(@RequestBody SynthesizerRequest synthesizerRequest) {
+        return ResponseEntity.ok(requestService.sendRequestForAcceptedStatus(synthesizerRequest));
     }
 
 }
