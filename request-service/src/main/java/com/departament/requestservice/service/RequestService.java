@@ -2,6 +2,7 @@ package com.departament.requestservice.service;
 
 import com.departament.requestservice.dto.ReportDto;
 import com.departament.requestservice.dto.RequestDto;
+import com.departament.requestservice.dto.SynthesizerRequest;
 
 import java.util.UUID;
 
@@ -16,5 +17,7 @@ public interface RequestService {
     void delete(UUID id);
 
     ReportDto reportByApplicantId(UUID id);
+
+    String sendRequestForAcceptedStatus(SynthesizerRequest synthesizerRequest);
 
 }

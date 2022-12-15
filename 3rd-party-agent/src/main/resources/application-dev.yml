@@ -1,0 +1,15 @@
+spring:
+  couchbase:
+    connection-string: localhost:11210
+    username: user
+    password: couchbase
+    env:
+      ssl:
+        enabled: false
+  data:
+    couchbase:
+      bucket-name: report
+
+wiremock:
+  mapping:
+    path: C:\\Users\\User\\IdeaProjects\\department-of-insurance\\3rd-party-agent\\src\\main\\resources\\payload\\reportResponse.json
