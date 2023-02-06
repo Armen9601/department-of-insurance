@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: third-party-agent
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: third-party-agent
+  template:
+    metadata:
+      labels:
+        app: third-party-agent
+    spec:
+      containers:
+        - name: third-party-agent
+          image: armensimonyan/3rd-party-agent
+          ports:
+            - containerPort: 8082
+          env:
+            - name: SPRING_APPLICATION_JSON
+              value: |
+                {
+                  "spring": {
+                    "couchbase": {
+                      "connection-string": "192.168.59.100:32048",
+                      "username": "user",
+                      "password": "couchbase",
+                      "env": {
+                        "ssl": {
+                          "enabled": false
+                        },
+                        "bootstrapHttpDirectPort": "192.168.59.100:31348"
+                      }
+                    },
+                    "data": {
+                      "couchbase": {
+                        "bucket-name": "report"
+                      }
+                    },
+                    "wiremock": {
+                      "mapping": {
+                        "path": "mappings/reportResponse.json"
+                      },
+                      "server": {
+                        "url": "http://http://192.168.59.100:30933/report"
+                      }
+                    }
+                  }
+                }
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: third-party-agent
+spec:
+  selector:
+    app: third-party-agent
+  ports:
+    - name: http
+      port: 8082
+      targetPort: 8082
+  type: LoadBalancer

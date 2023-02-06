@@ -1,0 +1,66 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sintezator-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sintezator-service
+  template:
+    metadata:
+      labels:
+        app: sintezator-service
+    spec:
+      containers:
+        - name: sintezator-service
+          image: armensimonyan/sintezator-service
+          ports:
+            - containerPort: 8078
+          env:
+            - name: SPRING_APPLICATION_JSON
+              value: |
+                {
+                  "spring": {
+                    "couchbase": {
+                      "connection-string": "192.168.59.100:32048",
+                      "username": "user",
+                      "password": "couchbase",
+                      "env": {
+                        "ssl": {
+                          "enabled": false
+                        },
+                        "bootstrapHttpDirectPort": "192.168.59.100:31348"
+                      }
+                    },
+                    "data": {
+                      "couchbase": {
+                        "bucket-name": "sintezator"
+                      }
+                    },
+                    "cloud": {
+                      "gcp": {
+                        "project-id": "sintezator-service",
+                        "credentials": {
+                          "location": "file:/home/sintezator.json"
+                        }
+                      }
+                    }
+                  }
+                }
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: sintezator-service
+spec:
+  selector:
+    app: sintezator-service
+  ports:
+    - name: http
+      port: 8078
+      targetPort: 8078
+      nodePort: 32498
+  type: LoadBalancer

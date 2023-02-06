@@ -11,6 +11,9 @@ import com.example.sintezatorservice.util.ObjectParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
+import reactor.core.scheduler.Schedulers;
 
 import java.time.LocalDateTime;
 
@@ -28,27 +31,42 @@ public class SynthesizerServiceImpl implements SynthesizerService {
         processingRequest(synthesizerRequest);
     }
 
-    private void processingRequest(SynthesizerRequest synthesizerRequest) {
-        Thread newThread = new Thread(() -> {
-            Synthesizer synthesizer = Synthesizer.builder()
-                    .requestId(synthesizerRequest.getRequestDto().getId())
-                    .reportId(synthesizerRequest.getReportDto().getId())
-                    .build();
-            if (synthesizerRequest.getRequestDto().getCreatedDate().isBefore(LocalDateTime.now())) {
-                synthesizer.setStatus(Status.ACCEPTED);
-            } else if (synthesizerRequest.getRequestDto().getApplicantId() == null) {
-                synthesizer.setStatus(Status.SUSPENDED);
-            } else {
-                synthesizer.setStatus(Status.REJECTED);
-            }
-            Synthesizer saved = synthesizerRepository.save(synthesizer);
-            try {
-                String completed = objectParser.parseObjectToJson(mapper.toDto(saved));
-                gateway.sendToPubsub(completed);
-            } catch (JsonProcessingException e) {
-                e.printStackTrace();
-            }
-        });
-        newThread.start();
+    void processingRequest(SynthesizerRequest synthesizerRequest) {
+        Mono.just(synthesizerRequest).publishOn(Schedulers.boundedElastic())
+                .doOnNext(request -> {
+                    Synthesizer synthesizer = Synthesizer.builder()
+                            .requestId(request.getRequestDto().getId())
+                            .reportId(request.getReportDto().getId())
+                            .build();
+                    try {
+                        Thread.sleep(10000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+//                    int j = 2 / 0;
+                    if (request.getRequestDto().getCreatedDate().isBefore(LocalDateTime.now())) {
+                        synthesizer.setStatus(Status.ACCEPTED);
+                    } else if (request.getRequestDto().getApplicantId() == null) {
+                        synthesizer.setStatus(Status.SUSPENDED);
+                    } else {
+                        synthesizer.setStatus(Status.REJECTED);
+                    }
+                    Mono<Synthesizer> save = synthesizerRepository.save(synthesizer);
+                    save.subscribe(result -> {
+                        try {
+                            String completed = objectParser.parseObjectToJson(mapper.toDto(result));
+                            gateway.sendToPubsub(completed);
+                        } catch (JsonProcessingException e) {
+                            e.printStackTrace();
+                        }
+                    });
+
+                })
+                .subscribe(
+                        success -> System.out.println("Synthesizer sent:"),
+                        error -> System.out.println("ERROR: " + error)
+                        );
+
+
     }
 }

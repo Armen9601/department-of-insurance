@@ -11,5 +11,5 @@ spring:
       bucket-name: report
 
 wiremock:
-  mapping:
-    path: C:\\Users\\User\\IdeaProjects\\department-of-insurance\\3rd-party-agent\\src\\main\\resources\\payload\\reportResponse.json
+  server:
+    url: http://localhost:15500/report

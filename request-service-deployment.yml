@@ -1,0 +1,71 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-boot-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-boot-service
+  template:
+    metadata:
+      labels:
+        app: spring-boot-service
+    spec:
+      containers:
+        - name: spring-boot-service
+          image: armensimonyan/request-service
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SPRING_APPLICATION_JSON
+              value: |
+                {
+                  "spring": {
+                    "couchbase": {
+                      "connection-string": "192.168.59.100:32048",
+                      "username": "user",
+                      "password": "couchbase",
+                      "env": {
+                        "ssl": {
+                          "enabled": false
+                        },
+                        "bootstrapHttpDirectPort": "192.168.59.100:31348"
+                      }
+                    },
+                    "data": {
+                      "couchbase": {
+                        "bucket-name": "request"
+                      }
+                    },
+                    "cloud": {
+                      "gcp": {
+                        "project-id": "sintezator-service",
+                        "credentials": {
+                          "location": "file:/home/sintezator.json"
+                        }
+                      }
+                    },
+                    "synthesizer": {
+                      "feign": {
+                        "url": "http://192.168.59.100/:32498"
+                      }
+                    }
+                  }
+                }
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-boot-service
+spec:
+  selector:
+    app: spring-boot-service
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+      nodePort: 31440
+  type: LoadBalancer

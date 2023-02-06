@@ -16,6 +16,7 @@ spring:
       credentials:
         location: file:C:\\Users\\User\\IdeaProjects\\department-of-insurance\\sintezator-service\\src\\main\\resources\\sintezator.json
 
-
-
+synthesizer:
+  feign:
+    url: http://localhost:8079
 

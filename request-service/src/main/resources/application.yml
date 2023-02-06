@@ -1,4 +1,6 @@
-
+synthesizer:
+  feign:
+    url: http://192.168.59.100:32498
 
 
 

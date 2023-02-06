@@ -1,18 +1,8 @@
 # --- WIREMOCK --
-FROM anapsix/alpine-java:8
+# --- WIREMOCK --
+FROM openjdk:17
+COPY external-lib/wiremock-1.33-standalone.jar wiremock-1.33-standalone.jar
+COPY mappings/mapping.json /mappings/reportResponse.json
+COPY mappings/reportResponse.json __files/reportResponse.json
 
-RUN apk add --update curl && \
-    rm -rf /var/cache/apk/*
-
-ENV WM_PACKAGE wiremock
-ARG WM_VERSION=2.7.1
-
-RUN mkdir /$WM_PACKAGE
-WORKDIR /$WM_PACKAGE
-COPY mappings/reportResponse.json /wiremock/mappings/reportResponse.json
-
-RUN curl -sSL -o $WM_PACKAGE.jar https://repo1.maven.org/maven2/com/github/tomakehurst/$WM_PACKAGE-standalone/$WM_VERSION/$WM_PACKAGE-standalone-$WM_VERSION.jar
-
-EXPOSE 9001
-
-ENTRYPOINT ["java","-jar","wiremock.jar","--port","9001","--verbose","--global-response-templating","--enable-browser-proxying"]
+ENTRYPOINT ["java","-jar","wiremock-1.33-standalone.jar","--port","15500"]
