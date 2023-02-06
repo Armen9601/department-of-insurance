@@ -1,4 +1,4 @@
-name: egs learning services - CI - develop pullrequest
+name: CI - develop pullrequest
 
 on:
   pull_request:
