@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wiremock
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wiremock
+  template:
+    metadata:
+      labels:
+        app: wiremock
+    spec:
+      securityContext:
+        runAsUser: 1000
+      containers:
+        - name: wiremock
+          image: rodolpheche/wiremock
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+          - name: mappings
+            mountPath: /home/wiremock/mappings
+            readOnly: true
+      volumes:
+        - name: mappings
+          configMap:
+            name: wiremock-mappings
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wiremock
+spec:
+  selector:
+    app: wiremock
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080
+      nodePort: 30933
+  type: LoadBalancer
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: wiremock-mappings
+data:
+  mapping-1.json: |-
+    {
+      "request": {
+        "method": "GET",
+        "url": "/report"
+      },
+      "response": {
+        "status": 200,
+        "fixedDelayMilliseconds": 1000,
+            "transformers": ["response-template"],
+            "jsonBody": {
+
+                "id": "609c2585-47f9-456e-b842-51db4411cbb7",
+                "createdFrom": "06650668-a0eb-45cd-aa90-7d763685b3d4",
+                "agentName": "poxos"
+              
+            }
+      }
+    }

@@ -19,6 +19,8 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - couchbase_docker_db
+    environment:
+      spring.profiles.active: prod
 
   3rd-party-agent:
     image: 3rd-party-agent
@@ -29,6 +31,30 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - couchbase_docker_db
+    environment:
+      spring.profiles.active: prod
+
+  sintezator-service:
+    image: sintezator-service
+    ports:
+      - 8078:8078
+    build:
+      context: sintezator-service
+      dockerfile: Dockerfile
+    depends_on:
+      - couchbase_docker_db
+    environment:
+      spring.profiles.active: prod
+
+  wiremock-server:
+
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    volumes:
+      - ./mappings:/wiremock/mappings
+    ports:
+      - 15500:15500
 
   redis:
     image: redis

@@ -1,0 +1,22 @@
+spring:
+  couchbase:
+    connection-string: localhost:11210
+    username: user
+    password: couchbase
+    env:
+      ssl:
+        enabled: false
+  data:
+    couchbase:
+      bucket-name: request
+
+  cloud:
+    gcp:
+      project-id: sintezator-service
+      credentials:
+        location: file:C:\\Users\\User\\IdeaProjects\\department-of-insurance\\sintezator-service\\src\\main\\resources\\sintezator.json
+
+synthesizer:
+  feign:
+    url: http://localhost:8079
+

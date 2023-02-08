@@ -1,0 +1,15 @@
+spring:
+  couchbase:
+    connection-string: "couchbase_docker_db"
+    username: "Administrator"
+    password: "administrator"
+    env:
+      ssl:
+        enabled: false
+  data:
+    couchbase:
+      bucket-name: "report"
+
+wiremock:
+  mapping:
+    path: /home/reportResponse.json
