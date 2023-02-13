@@ -22,6 +22,7 @@ public class AgentController {
     @GetMapping("/{id}")
     public ResponseEntity<ReportDto> reportById(@PathVariable("id") UUID id) throws IOException {
         return ResponseEntity.ok(agentService.reportByApplicantId(id));
+
     }
 
 }
