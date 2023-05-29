@@ -1,6 +1,5 @@
-package com.example.sintezatorservice.dto;
+package com.departament.requestservice.dto;
 
-import com.example.sintezatorservice.model.Status;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

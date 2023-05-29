@@ -4,3 +4,5 @@ synthesizer:
 
 
 
+elastic:
+  index: request

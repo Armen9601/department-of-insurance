@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.UUID;
 
 @RestController
@@ -18,7 +19,7 @@ public class RequestController {
     private final RequestService requestService;
 
     @PostMapping
-    public ResponseEntity<RequestDto> add(@RequestBody RequestDto requestDto) {
+    public ResponseEntity<RequestDto> add(@RequestBody RequestDto requestDto) throws IOException {
         return ResponseEntity.ok(requestService.add(requestDto));
     }
 

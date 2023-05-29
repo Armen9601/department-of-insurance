@@ -46,7 +46,7 @@ class RequestServiceImplTest {
     void init() {
 
         request = new Request(UUID.fromString("123e4567-e89b-12d3-a456-426614174000"), UUID.fromString("123e4567-e89b-12d3-a456-426614174000"), LocalDateTime.now());
-        requestDto = new RequestDto(UUID.fromString("123e4567-e89b-12d3-a456-426614174000"), UUID.fromString("123e4567-e89b-12d3-a456-426614174001"), LocalDateTime.now());
+//        requestDto = new RequestDto(UUID.fromString("123e4567-e89b-12d3-a456-426614174000"), UUID.fromString("123e4567-e89b-12d3-a456-426614174001"), LocalDateTime.now());
     }
 
     @Test

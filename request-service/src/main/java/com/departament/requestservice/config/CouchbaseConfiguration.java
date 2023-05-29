@@ -4,6 +4,7 @@ import com.departament.requestservice.entity.Synthesizer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.couchbase.CouchbaseClientFactory;
 import org.springframework.data.couchbase.SimpleCouchbaseClientFactory;
@@ -15,7 +16,7 @@ import org.springframework.data.couchbase.repository.config.RepositoryOperations
 import java.util.Collections;
 
 @Configuration
-public class CouchbaseConfig extends AbstractCouchbaseConfiguration {
+public class CouchbaseConfiguration extends AbstractCouchbaseConfiguration {
 
     @Autowired
     private ApplicationContext applicationContext;

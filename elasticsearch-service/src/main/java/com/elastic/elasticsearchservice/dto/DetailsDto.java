@@ -1,24 +1,20 @@
-package com.example.sintezatorservice.dto;
+package com.elastic.elasticsearchservice.dto;
 
-import com.example.sintezatorservice.model.Status;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
 import java.util.UUID;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class SynthesizerDto {
+public class DetailsDto {
 
     private UUID id;
     private Status status;
-    private UUID reportId;
-    private UUID requestId;
-    private List<DetailsDto> details;
+    private String passportNumber;
 
 }

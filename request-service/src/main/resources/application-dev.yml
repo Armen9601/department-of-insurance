@@ -1,3 +1,4 @@
+
 spring:
   couchbase:
     connection-string: localhost:11210
@@ -9,6 +10,10 @@ spring:
   data:
     couchbase:
       bucket-name: request
+    elasticsearch:
+      client:
+        reactive:
+          use-ssl: true
 
   cloud:
     gcp:
@@ -19,4 +24,7 @@ spring:
 synthesizer:
   feign:
     url: http://localhost:8079
+server:
+  port: 8090
+
 

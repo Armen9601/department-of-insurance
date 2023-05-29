@@ -1,7 +1,5 @@
-package com.departament.requestservice.entity;
+package com.example.sintezatorservice.model;
 
-import com.departament.requestservice.dto.DetailsDto;
-import com.departament.requestservice.dto.Status;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -18,15 +16,14 @@ import static org.springframework.data.couchbase.core.mapping.id.GenerationStrat
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Document
-public class Synthesizer {
+public class Details {
 
     @Id
     @GeneratedValue(strategy = UNIQUE)
     private UUID id;
     private Status status;
-    private UUID reportId;
-    private UUID requestId;
-    private List<DetailsDto> details;
+    private String passportNumber;
 
 }

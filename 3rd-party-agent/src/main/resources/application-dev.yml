@@ -1,14 +1,14 @@
-#spring:
-#  couchbase:
-#    connection-string: localhost:11210
-#    username: user
-#    password: couchbase
-#    env:
-#      ssl:
-#        enabled: false
-#  data:
-#    couchbase:
-#      bucket-name: report
+spring:
+  couchbase:
+    connection-string: localhost:11210
+    username: user
+    password: couchbase
+    env:
+      ssl:
+        enabled: false
+  data:
+    couchbase:
+      bucket-name: report
 
 wiremock:
   server:
